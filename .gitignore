@@ -1,0 +1,8 @@
+
+.idea
+boan
+installChJoinCh
+backend.log
+vendor/
+*/vendor
+*.exe

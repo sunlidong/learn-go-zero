@@ -1,0 +1,32 @@
+type (
+	UserOptReq struct {
+		mobile string `form:"mobile"`
+		passwd string `form:"passwd"`
+		code   string `form:"code,optional"`
+	}
+
+	UserOptResp struct {
+		id    uint   `json:"id"`
+		token string `json:"token"`
+	}
+	//修改
+	UserUpdateReq struct {
+		id     uint   `form:"id"`
+		mobile string `form:"mobile,optional"`
+	}
+)
+
+service user-api {
+	@server(
+		handler: authorizationHandler
+		folder: open
+	)
+	post /open/authorization(UserOptReq) returns(UserOptResp)
+
+	@server(
+		handler: edituserHandler
+		folder: user
+	)
+	post /user/update(UserUpdateReq) returns(UserOptResp)
+	
+}

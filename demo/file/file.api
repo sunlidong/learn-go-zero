@@ -1,0 +1,21 @@
+type (
+	UserOptReq struct {
+		mobile string `form:"mobile"`
+		passwd string `form:"passwd"`
+		code   string `form:"code,optional"`
+	}
+
+	UserOptResp struct {
+		id    uint   `json:"id"`
+		token string `json:"token"`
+	}
+)
+
+service file-api {
+	@server(
+		handler: authorizationHandler
+		folder: open
+	)
+	post /open/authorization(UserOptReq) returns(UserOptResp)
+	
+}
